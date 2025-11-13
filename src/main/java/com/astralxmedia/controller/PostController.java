@@ -2,6 +2,7 @@ package com.astralxmedia.controller;
 
 import com.astralxmedia.dto.PostCreateRequest;
 import com.astralxmedia.dto.PostResponse;
+import com.astralxmedia.dto.PostUpdateRequest;
 import com.astralxmedia.entity.User;
 import com.astralxmedia.repository.UserRepository;
 import com.astralxmedia.service.PostService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,5 +57,11 @@ public class PostController {
     public ResponseEntity<Void> deletePost(@PathVariable Long id, Principal principal) {
         postService.deletePost(id, principal.getName());
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PostResponse> updatePost(@PathVariable Long id, @RequestBody PostUpdateRequest updateRequest, Principal principal) {
+        PostResponse updatedPost = postService.updatePost(id, updateRequest, principal.getName());
+        return ResponseEntity.ok(updatedPost);
     }
 }
