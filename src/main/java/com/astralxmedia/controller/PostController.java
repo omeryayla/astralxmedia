@@ -1,7 +1,7 @@
 package com.astralxmedia.controller;
 
 import com.astralxmedia.dto.PostCreateRequest;
-import com.astralxmedia.entity.Post;
+import com.astralxmedia.dto.PostResponse;
 import com.astralxmedia.entity.User;
 import com.astralxmedia.repository.UserRepository;
 import com.astralxmedia.service.PostService;
@@ -28,23 +28,23 @@ public class PostController {
     private final UserRepository userRepository;
 
     @PostMapping("/")
-    public ResponseEntity<Post> createPost(@RequestBody PostCreateRequest postRequest, Principal principal) {
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostCreateRequest postRequest, Principal principal) {
         String username = principal.getName();
         User author = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
-        Post newPost = postService.createPost(postRequest, author);
+        PostResponse newPost = postService.createPost(postRequest, author);
 
         return new ResponseEntity<>(newPost, HttpStatus.CREATED);
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Post>> getAllPosts() {
+    public ResponseEntity<List<PostResponse>> getAllPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+    public ResponseEntity<PostResponse> getPostById(@PathVariable Long id) {
         return postService.getPostById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

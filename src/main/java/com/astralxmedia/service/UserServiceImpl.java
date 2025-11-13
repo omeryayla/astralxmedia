@@ -1,6 +1,7 @@
 package com.astralxmedia.service;
 
 import com.astralxmedia.dto.UserRegistrationRequest;
+import com.astralxmedia.dto.UserResponse;
 import com.astralxmedia.entity.User;
 import com.astralxmedia.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,12 +16,13 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public User registerUser(UserRegistrationRequest registrationRequest) {
+    public UserResponse registerUser(UserRegistrationRequest registrationRequest) {
         User user = User.builder()
                 .username(registrationRequest.getUsername())
                 .email(registrationRequest.getEmail())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
                 .build();
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        return new UserResponse(savedUser.getId(), savedUser.getUsername());
     }
 }

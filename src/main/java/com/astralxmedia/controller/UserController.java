@@ -1,8 +1,8 @@
 package com.astralxmedia.controller;
 
-import com.astralxmedia.entity.User;
-import com.astralxmedia.service.UserService;
 import com.astralxmedia.dto.UserRegistrationRequest;
+import com.astralxmedia.dto.UserResponse;
+import com.astralxmedia.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +19,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody UserRegistrationRequest registrationRequest) {
-        User newUser = userService.registerUser(registrationRequest);
+    public ResponseEntity<UserResponse> registerUser(@RequestBody UserRegistrationRequest registrationRequest) {
+        UserResponse newUser = userService.registerUser(registrationRequest);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 }
