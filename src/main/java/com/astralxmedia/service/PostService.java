@@ -11,4 +11,5 @@ public interface PostService {
     PostResponse createPost(PostCreateRequest postRequest, User author);
     List<PostResponse> getAllPosts();
     Optional<PostResponse> getPostById(Long id);
+    void deletePost(Long postId, String username);
 }
