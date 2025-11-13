@@ -5,7 +5,11 @@ import com.astralxmedia.entity.Post;
 import com.astralxmedia.entity.User;
 import com.astralxmedia.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +25,15 @@ public class PostServiceImpl implements PostService {
                 .user(author)
                 .build();
         return postRepository.save(post);
+    }
+
+    @Override
+    public List<Post> getAllPosts() {
+        return postRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+    }
+
+    @Override
+    public Optional<Post> getPostById(Long id) {
+        return postRepository.findById(id);
     }
 }
