@@ -1,4 +1,4 @@
-package com.astralxmedia.user;
+package com.astralxmedia.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

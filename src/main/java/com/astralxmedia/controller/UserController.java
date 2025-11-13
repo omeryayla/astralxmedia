@@ -1,8 +1,8 @@
-package com.astralxmedia.user.controller;
+package com.astralxmedia.controller;
 
-import com.astralxmedia.user.User;
-import com.astralxmedia.user.UserService;
-import com.astralxmedia.user.dto.UserRegistrationRequest;
+import com.astralxmedia.entity.User;
+import com.astralxmedia.service.UserService;
+import com.astralxmedia.dto.UserRegistrationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
