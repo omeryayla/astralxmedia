@@ -1,4 +1,4 @@
-package com.astralxmedia.user.dto;
+package com.astralxmedia.dto;
 
 import lombok.Data;
 

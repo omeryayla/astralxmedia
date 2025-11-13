@@ -1,9 +1,8 @@
-package com.astralxmedia.user.service;
+package com.astralxmedia.service;
 
-import com.astralxmedia.user.User;
-import com.astralxmedia.user.UserRepository;
-import com.astralxmedia.user.UserService;
-import com.astralxmedia.user.dto.UserRegistrationRequest;
+import com.astralxmedia.entity.User;
+import com.astralxmedia.repository.UserRepository;
+import com.astralxmedia.dto.UserRegistrationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

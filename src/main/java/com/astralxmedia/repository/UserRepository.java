@@ -1,5 +1,6 @@
-package com.astralxmedia.user;
+package com.astralxmedia.repository;
 
+import com.astralxmedia.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
